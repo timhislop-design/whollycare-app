@@ -4,446 +4,532 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WhollyCare™ — Personal Care, Honestly Priced</title>
-  <meta name="description" content="WhollyCare cross-compares personal care and beauty prices filtered by your ingredient preferences. No paid placements. No compromises. A Sentir Solutions® company." />
+  <meta name="description" content="WhollyCare cross-compares personal care and beauty prices across CVS, Walgreens, Ulta, and Target — filtered first by your ingredient preferences. Fragrance-free, cruelty-free, paraben-free. What you care about is a hard rule." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --dark:      #1E0630;
-      --mid:       #3A1255;
-      --light:     #6B2E8C;
+      --dark:      #130420;
+      --mid:       #251040;
+      --rich:      #3A1A5C;
+      --warm:      #5E2E82;
       --accent:    #A45AB0;
       --accent-lt: #C98AD4;
-      --cta:       #E87C2A;
-      --cta-lt:    #F09A52;
-      --bg:        #F7F4FB;
+      --cta:       #8E44A8;
+      --cta-lt:    #A45AB0;
+      --bg:        #F8F4FC;
       --bg-alt:    #FFFFFF;
-      --border:    #D8C8E8;
-      --text:      #1A0D28;
-      --muted:     #5C4870;
-      --max:       1080px;
+      --bg-soft:   #F1EAF8;
+      --border:    #D0BADE;
+      --border-lt: #E4D4F0;
+      --text:      #180828;
+      --muted:     #5A3E6A;
+      --muted-lt:  #9070A8;
+      --max:       1100px;
     }
-
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
 
     /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--dark);
-      padding: 0 2rem; height: 62px;
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    }
-    .nav-logo {
-      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.05rem;
-      color: #FFFFFF; text-decoration: none; letter-spacing: 0.03em;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .logo-mark {
-      width: 28px; height: 28px; border-radius: 6px;
-      background: var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.8rem; font-weight: 700; color: #FFFFFF; line-height: 1;
-    }
-    .nav-links { display: flex; align-items: center; gap: 0.2rem; }
-    .nav-link {
-      font-size: 0.82rem; color: rgba(255,255,255,0.6); text-decoration: none;
-      padding: 0.4rem 0.8rem; border-radius: 3px; transition: color 0.2s;
-      white-space: nowrap;
-    }
+    nav { position: sticky; top: 0; z-index: 100; background: var(--dark); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-mark { width: 32px; height: 32px; border-radius: 8px; background: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-mark svg { width: 18px; height: 18px; }
+    .nav-wordmark { font-family: 'Fraunces', serif; font-weight: 400; font-size: 1.15rem; color: #FFFFFF; letter-spacing: 0.01em; }
+    .nav-wordmark sup { font-size: 0.6em; font-family: 'Inter', sans-serif; opacity: 0.7; vertical-align: super; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-link { font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none; padding: 0.4rem 0.9rem; border-radius: 3px; transition: color 0.2s; white-space: nowrap; }
     .nav-link:hover { color: #FFFFFF; }
-    .nav-link.active { color: #FFFFFF; }
-    .nav-cta {
-      background: var(--cta); color: #FFFFFF; font-weight: 600;
-      padding: 0.45rem 1rem; margin-left: 0.4rem;
-    }
-    .nav-cta:hover { background: var(--cta-lt); color: #FFFFFF; }
-
-    /* ── LAYOUT ── */
-    .container { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
-    section { padding: 5rem 2rem; }
-    section.alt { background: var(--bg-alt); }
+    .nav-waitlist { background: var(--accent); color: #FFFFFF; font-weight: 600; font-size: 0.82rem; padding: 0.5rem 1.1rem; border-radius: 4px; text-decoration: none; margin-left: 0.75rem; transition: background 0.2s; white-space: nowrap; }
+    .nav-waitlist:hover { background: var(--cta-lt); }
 
     /* ── HERO ── */
-    .hero {
-      background: linear-gradient(140deg, var(--dark) 0%, var(--mid) 55%, var(--light) 100%);
-      padding: 6rem 2rem 5rem; position: relative; overflow: hidden;
-    }
-    .hero-inner { max-width: var(--max); margin: 0 auto; position: relative; z-index: 1; }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 20px; padding: 5px 14px; margin-bottom: 1.75rem;
-    }
-    .hero-eyebrow span {
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: rgba(255,255,255,0.85);
-    }
-    .hero-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--accent); display: block; flex-shrink: 0;
-    }
-    .hero h1 {
-      font-family: 'Fraunces', serif; font-weight: 300;
-      font-size: clamp(2rem, 4vw, 3.1rem);
-      color: #FFFFFF; line-height: 1.15; margin-bottom: 1.25rem; max-width: 600px;
-    }
+    .hero { background: linear-gradient(150deg, var(--dark) 0%, var(--mid) 50%, var(--rich) 100%); padding: 5.5rem 2rem 5rem; position: relative; overflow: hidden; }
+    .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 40%, rgba(164,90,176,0.15) 0%, transparent 70%); pointer-events: none; }
+    .hero-inner { max-width: var(--max); margin: 0 auto; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 400px; gap: 4rem; align-items: center; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(164,90,176,0.15); border: 1px solid rgba(164,90,176,0.3); border-radius: 20px; padding: 5px 14px; margin-bottom: 1.5rem; }
+    .hero-eyebrow span { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-lt); }
+    .hero h1 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(2.1rem, 4vw, 3.2rem); color: #FFFFFF; line-height: 1.12; margin-bottom: 1.25rem; }
     .hero h1 em { font-style: italic; color: var(--accent-lt); }
-    .hero-sub {
-      font-size: 1.05rem; color: rgba(255,255,255,0.72);
-      max-width: 520px; line-height: 1.85; margin-bottom: 1.75rem;
-    }
-    .hero-tagline {
-      display: inline-block;
-      background: rgba(164,90,176,0.18); border: 1px solid rgba(164,90,176,0.35);
-      border-radius: 8px; padding: 10px 20px; margin-bottom: 2rem;
-    }
-    .hero-tagline span {
-      font-family: 'Fraunces', serif; font-style: italic;
-      font-size: 1.1rem; color: var(--accent-lt); font-weight: 300;
-    }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-block; background: var(--cta); color: #FFFFFF;
-      text-decoration: none; font-size: 0.9rem; font-weight: 600;
-      padding: 13px 30px; border-radius: 6px; letter-spacing: 0.02em; transition: background 0.2s;
-    }
-    .btn-primary:hover { background: var(--cta-lt); }
-    .btn-ghost {
-      display: inline-block; background: rgba(255,255,255,0.09); color: #FFFFFF;
-      border: 1px solid rgba(255,255,255,0.22); text-decoration: none;
-      font-size: 0.9rem; padding: 13px 24px; border-radius: 6px; transition: background 0.2s;
-    }
-    .btn-ghost:hover { background: rgba(255,255,255,0.15); }
-
-    /* Hero decorative SVG */
-    .hero-icon {
-      position: absolute; right: 6%; top: 50%; transform: translateY(-52%);
-      opacity: 0.08; pointer-events: none;
-    }
-
-    /* ── SECTION LABELS ── */
-    .section-label {
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
-    }
-    h2 {
-      font-family: 'Fraunces', serif; font-weight: 300;
-      font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--dark); line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
-    h2 em { font-style: italic; color: var(--light); }
-    .divider {
-      width: 48px; height: 2px; background: var(--accent);
-      margin: 1rem 0 1.5rem;
-    }
-    .lead {
-      font-size: 1rem; color: var(--muted); line-height: 1.85;
-      max-width: 600px; margin-bottom: 2.5rem;
-    }
-
-    /* ── CARD GRID ── */
-    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin-top: 2rem; }
-    .four-col  { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 2rem; }
-    .card {
-      background: var(--bg-alt); border: 1px solid var(--border);
-      border-top: 3px solid var(--accent); padding: 2rem;
-    }
-    .card.mid   { border-top-color: var(--mid); }
-    .card.light { border-top-color: var(--light); }
-    .card-num {
-      font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 300;
-      color: var(--border); margin-bottom: 0.85rem;
-    }
-    .card h3 {
-      font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600;
-      color: var(--dark); margin-bottom: 0.5rem; line-height: 1.3;
-    }
-    .card p { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
-
-    /* ── PRICING CARDS ── */
-    .tier-name {
-      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
-    }
-    .tier-price {
-      font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 300;
-      color: var(--dark); line-height: 1; margin-bottom: 0.25rem;
-    }
-    .tier-period { font-size: 0.78rem; color: #9A80A8; margin-bottom: 0.75rem; }
-    .tier-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.75; }
-
-    /* ── DARK CALLOUT ── */
-    .sincere-block {
-      background: linear-gradient(135deg, var(--dark) 0%, var(--mid) 100%);
-      border-radius: 4px; padding: 3rem;
-    }
-    .sincere-block .section-label { color: var(--accent-lt); margin-bottom: 1rem; }
-    .sincere-block h2 { color: #FFFFFF; }
-    .sincere-block h2 em { color: var(--accent-lt); }
-    .sincere-block .lead { color: rgba(255,255,255,0.65); max-width: 640px; }
-    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; }
-    .pill {
-      font-size: 0.82rem; color: rgba(255,255,255,0.78);
-      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
-      padding: 6px 14px; border-radius: 20px;
-    }
-
-    /* ── WAITLIST CTA ── */
-    .waitlist-block {
-      background: var(--bg-alt); border: 1px solid var(--border);
-      border-top: 3px solid var(--accent);
-      padding: 3rem; text-align: center;
-    }
-    .waitlist-block .section-label { margin-bottom: 0.75rem; }
-    .waitlist-block h2 { margin: 0 auto 0.75rem; }
-    .waitlist-block p { font-size: 0.95rem; color: var(--muted); max-width: 440px; margin: 0 auto 1.75rem; }
-    .btn-cta {
-      display: inline-block; background: var(--cta); color: #FFFFFF;
-      text-decoration: none; font-size: 0.9rem; font-weight: 600;
-      padding: 14px 36px; border-radius: 6px; transition: background 0.2s;
-    }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.68); max-width: 480px; line-height: 1.85; margin-bottom: 2rem; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .btn-cta { display: inline-block; background: var(--accent); color: #FFFFFF; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 13px 30px; border-radius: 5px; transition: background 0.2s; }
     .btn-cta:hover { background: var(--cta-lt); }
+    .btn-ghost { display: inline-block; background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.2); text-decoration: none; font-size: 0.88rem; padding: 12px 22px; border-radius: 5px; transition: all 0.2s; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.45); color: #FFFFFF; }
+    .hero-tagline { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-family: 'Fraunces', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.4); }
+
+    /* Hero card */
+    .hero-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 1.75rem; }
+    .hero-card-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-lt); margin-bottom: 1.25rem; }
+    .filter-tag { display: inline-flex; align-items: center; gap: 5px; font-size: 0.76rem; font-weight: 500; padding: 4px 11px; border-radius: 14px; background: rgba(164,90,176,0.2); border: 1px solid rgba(164,90,176,0.3); color: var(--accent-lt); margin: 0 4px 6px 0; }
+    .filter-tag.active { background: rgba(164,90,176,0.35); }
+    .hc-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 1.1rem 0; }
+    .product-row { display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 0.85rem; border-radius: 6px; margin-bottom: 0.5rem; }
+    .product-row.pass { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.07); }
+    .product-row.out { background: rgba(200,50,150,0.06); border: 1px solid rgba(200,50,150,0.1); }
+    .product-name { font-size: 0.83rem; color: #FFFFFF; font-weight: 500; }
+    .product-row.out .product-name { color: rgba(255,255,255,0.4); text-decoration: line-through; }
+    .product-price { font-size: 0.82rem; color: var(--accent-lt); font-weight: 600; }
+    .product-row.out .product-price { display: none; }
+    .product-reason { font-size: 0.7rem; color: rgba(200,80,150,0.8); }
+
+    /* ── STAT BAR ── */
+    .stat-bar { background: var(--mid); padding: 1.5rem 2rem; }
+    .stat-bar-inner { max-width: var(--max); margin: 0 auto; display: flex; }
+    .stat-item { flex: 1; text-align: center; padding: 0.5rem 1rem; position: relative; }
+    .stat-item:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 15%; bottom: 15%; width: 1px; background: rgba(255,255,255,0.1); }
+    .stat-num { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 300; color: var(--accent-lt); line-height: 1.1; }
+    .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; margin-top: 0.2rem; }
+
+    /* ── SECTIONS ── */
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 2rem; }
+    section.on-white { background: var(--bg-alt); }
+    section.on-soft { background: var(--bg-soft); }
+    section.on-dark { background: var(--dark); }
+
+    .section-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+    .section-eyebrow.light { color: var(--accent-lt); }
+    h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(1.65rem, 3vw, 2.35rem); color: var(--dark); line-height: 1.15; margin-bottom: 0.6rem; }
+    h2 em { font-style: italic; color: var(--warm); }
+    h2.light { color: #FFFFFF; }
+    h2.light em { color: var(--accent-lt); }
+    .rule { width: 44px; height: 2px; background: var(--accent); margin: 1rem 0 1.75rem; }
+    .rule.light { background: var(--accent-lt); }
+    .lead-text { font-size: 1rem; color: var(--muted); line-height: 1.9; max-width: 580px; margin-bottom: 2.5rem; }
+    .lead-text.light { color: rgba(255,255,255,0.6); }
+
+    /* ── FILTER CATEGORIES ── */
+    .filter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .filter-card { background: var(--bg-alt); border: 1px solid var(--border-lt); padding: 2rem; position: relative; }
+    .filter-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .filter-card.dark-top::before { background: var(--dark); }
+    .filter-card.mid-top::before { background: var(--mid); }
+    .filter-card.accent-top::before { background: var(--accent); }
+    .filter-big-icon { font-size: 1.8rem; margin-bottom: 0.85rem; }
+    .filter-card h3 { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 400; color: var(--dark); margin-bottom: 0.6rem; }
+    .filter-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.8; }
+    .filter-tags-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 1rem; }
+    .filter-chip { font-size: 0.73rem; padding: 3px 9px; border-radius: 12px; background: var(--bg-soft); border: 1px solid var(--border-lt); color: var(--muted); }
+
+    /* ── FEATURES ── */
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .feature-card { background: var(--bg-alt); border: 1px solid var(--border-lt); padding: 2rem; }
+    .feature-icon { font-size: 1.5rem; margin-bottom: 0.85rem; }
+    .feature-card h3 { font-family: 'Fraunces', serif; font-size: 1.02rem; font-weight: 400; color: var(--dark); margin-bottom: 0.45rem; line-height: 1.3; }
+    .feature-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.8; }
+
+    /* ── HOW IT WORKS ── */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 2.5rem; position: relative; }
+    .steps::before { content: ''; position: absolute; top: 28px; left: calc(12.5% + 12px); right: calc(12.5% + 12px); height: 1px; background: var(--border); z-index: 0; }
+    .step { padding: 0 1.25rem; text-align: center; position: relative; z-index: 1; }
+    .step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--bg-alt); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+    .step-num span { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 300; color: var(--accent); }
+    .step h4 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 0.98rem; color: var(--dark); margin-bottom: 0.5rem; line-height: 1.3; }
+    .step p { font-size: 0.83rem; color: var(--muted); line-height: 1.75; }
+
+    /* ── PRICING ── */
+    .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+    .price-card { background: var(--bg-alt); border: 1px solid var(--border-lt); padding: 2rem; position: relative; }
+    .price-card.featured { border-color: var(--accent); box-shadow: 0 4px 24px rgba(164,90,176,0.14); }
+    .price-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--border); }
+    .price-card.featured::before { background: var(--accent); }
+    .price-tier { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-lt); margin-bottom: 0.85rem; }
+    .price-card.featured .price-tier { color: var(--accent); }
+    .price-amount { font-family: 'Fraunces', serif; font-size: 2.1rem; font-weight: 300; color: var(--dark); line-height: 1; }
+    .price-period { font-size: 0.78rem; color: var(--muted-lt); margin: 0.3rem 0 1rem; }
+    .price-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.75; padding-top: 1rem; border-top: 1px solid var(--border-lt); }
+    .price-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--accent); color: #FFFFFF; padding: 2px 8px; border-radius: 3px; margin-left: 0.5rem; vertical-align: middle; }
+
+    /* ── SINCERE ── */
+    .sincere-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.06); margin-top: 2.5rem; }
+    .sincere-item { padding: 2rem; background: rgba(255,255,255,0.03); }
+    .sincere-icon { font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .sincere-item h4 { font-size: 0.92rem; font-weight: 600; color: #FFFFFF; margin-bottom: 0.4rem; }
+    .sincere-item p { font-size: 0.84rem; color: rgba(255,255,255,0.55); line-height: 1.75; }
+
+    /* ── WAITLIST ── */
+    .waitlist-box { max-width: 620px; margin: 0 auto; text-align: center; }
+    .waitlist-box p { font-size: 0.97rem; color: var(--muted); max-width: 440px; margin: 0 auto 2rem; line-height: 1.85; }
 
     /* ── FOOTER ── */
-    footer {
-      background: #0D0118; color: rgba(255,255,255,0.4);
-      padding: 2.5rem 2rem; text-align: center; font-size: 0.82rem;
-    }
-    footer a { color: var(--accent-lt); text-decoration: none; }
-    footer a:hover { color: #FFFFFF; }
-    footer p + p { margin-top: 0.4rem; }
+    footer { background: #080114; padding: 3rem 2rem 2rem; }
+    .footer-inner { max-width: var(--max); margin: 0 auto; }
+    .footer-top { display: flex; gap: 3rem; justify-content: space-between; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 1.75rem; }
+    .footer-brand .footer-wordmark { font-family: 'Fraunces', serif; font-weight: 400; font-size: 1.2rem; color: #FFFFFF; margin-bottom: 0.6rem; }
+    .footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.75; max-width: 240px; }
+    .footer-col h5 { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.84rem; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 0.5rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--accent-lt); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.22); }
+    .footer-sincere { font-size: 0.75rem; color: rgba(255,255,255,0.18); font-style: italic; }
 
-    /* ── FADE-IN ── */
-    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
 
-    @media (max-width: 860px) {
-      .three-col, .four-col { grid-template-columns: 1fr; }
-      .hero-icon { display: none; }
-      nav { padding: 0 1rem; }
-      section { padding: 3.5rem 1.25rem; }
-      .sincere-block { padding: 2rem; }
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .filter-grid, .feature-grid { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .steps::before { display: none; }
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .sincere-grid { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
-    @media (max-width: 600px) {
-      .nav-links .nav-link:not(.nav-cta):not(.active) { display: none; }
+    @media (max-width: 640px) {
+      .filter-grid, .feature-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      nav { padding: 0 1rem; }
+      .nav-links .nav-link { display: none; }
+      .nav-links .nav-waitlist { display: flex; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="#">
-      <span class="logo-mark">C</span>
-      WhollyCare™
-    </a>
-    <div class="nav-links">
-      <a href="#ingredients" class="nav-link">Ingredients</a>
-      <a href="#pricing" class="nav-link">Pricing</a>
-      <a href="https://sentirsolutions.github.io/sentir-solutions-site/" class="nav-link" target="_blank" rel="noopener">Sentir Solutions</a>
-      <a href="mailto:tim.hislop@gmail.com?subject=WhollyCare%20Waitlist" class="nav-link nav-cta">Join Waitlist →</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-
-      <svg class="hero-icon" width="320" height="320" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 42 Q12 28 20 12 Q32 4 44 10 Q42 26 30 36 Q24 40 18 42Z" fill="white"/>
-        <path d="M10 34 Q6 28 10 22 Q14 28 10 34Z" fill="white" opacity="0.6"/>
-        <circle cx="32" cy="14" r="3" fill="white" opacity="0.5"/>
-        <circle cx="26" cy="10" r="2" fill="white" opacity="0.3"/>
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-mark">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 42 Q10 28 18 12 Q30 4 44 10 Q42 26 30 36 Q24 40 18 42Z" fill="white" opacity="0.9"/>
+        <path d="M8 34 Q4 26 9 19 Q13 26 8 34Z" fill="white" opacity="0.6"/>
       </svg>
+    </div>
+    <span class="nav-wordmark">WhollyCare<sup>™</sup></span>
+  </a>
+  <div class="nav-links">
+    <a href="#ingredients" class="nav-link">Ingredients</a>
+    <a href="#how-it-works" class="nav-link">How It Works</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="https://sentirsolutions.github.io/sentir-solutions-site/" class="nav-link" target="_blank" rel="noopener">Sentir Solutions</a>
+    <a href="mailto:tim.hislop@gmail.com?subject=WhollyCare%20Waitlist" class="nav-waitlist">Join Waitlist →</a>
+  </div>
+</nav>
 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
       <div class="hero-eyebrow">
-        <span class="hero-dot"></span>
-        <span>Personal care intelligence &nbsp;·&nbsp; A Sentir Solutions® brand</span>
+        <span>Personal care intelligence &nbsp;·&nbsp; Ingredient-aware savings</span>
       </div>
-
-      <h1>The beauty industry<br />is opaque. WhollyCare<br /><em>is the transparent alternative.</em></h1>
-
-      <p class="hero-sub">
-        WhollyCare cross-compares personal care and beauty prices across CVS, Walgreens,
-        Ulta, and Target — filtered by your ingredient preferences. Fragrance-free,
-        paraben-free, cruelty-free. What matters to you is a hard rule, never a preference.
-      </p>
-
-      <div class="hero-tagline">
-        <span>The personal care plan that pays you back.</span>
-      </div>
-
+      <h1>The beauty industry<br />is opaque. WhollyCare<br /><em>is the honest alternative.</em></h1>
+      <p class="hero-sub">WhollyCare cross-compares personal care and beauty prices across CVS, Walgreens, Ulta, and Target — filtered first by what matters to you. Fragrance-free, cruelty-free, paraben-free. Your values are hard rules, not preferences.</p>
       <div class="hero-actions">
-        <a href="mailto:tim.hislop@gmail.com?subject=WhollyCare%20Waitlist" class="btn-primary">Join the Waitlist →</a>
-        <a href="https://sentirsolutions.github.io/sentir-solutions-site/" class="btn-ghost" target="_blank" rel="noopener">About Sentir Solutions</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- INGREDIENT CONSTRAINTS -->
-  <section id="ingredients" class="alt">
-    <div class="container">
-      <p class="section-label fade-in">Your Ingredients. Your Rules.</p>
-      <h2 class="fade-in">What you won't use is<br /><em>a hard rule — not a preference.</em></h2>
-      <div class="divider fade-in"></div>
-      <p class="lead fade-in">WhollyCare runs ingredient constraints before price comparison. A product that fails your profile doesn't appear — at any price.</p>
-
-      <div class="three-col">
-        <div class="card fade-in" style="border-top-color: var(--dark);">
-          <h3>Ingredient Avoidance</h3>
-          <p>Fragrance-free, paraben-free, sulfate-free, phthalate-free. Silicone-free. Formaldehyde-free. Any ingredient you avoid becomes a hard filter that removes products entirely — not just deprioritizes them.</p>
-        </div>
-        <div class="card fade-in" style="border-top-color: var(--mid);">
-          <h3>Ethical Commitments</h3>
-          <p>Cruelty-free, vegan, reef-safe, sustainably sourced. These aren't "nice to have" filters — they're constraints that run first. No brand pays to bypass them. The Sincere Strategy doesn't allow it.</p>
-        </div>
-        <div class="card fade-in">
-          <h3>Skin & Sensitivity</h3>
-          <p>Hypoallergenic, non-comedogenic, eczema-safe, sensitive skin formulated. Specific allergen avoidance (lanolin, propylene glycol, etc.). Dermatologist-tested flags. What your skin needs is a constraint, not a filter preference.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section>
-    <div class="container">
-      <p class="section-label fade-in">How It Works</p>
-      <h2 class="fade-in">Your values filter first.<br /><em>Savings follow.</em></h2>
-      <div class="divider fade-in"></div>
-
-      <div class="four-col">
-        <div class="card fade-in" style="border-top-color: var(--dark);">
-          <div class="card-num">01</div>
-          <h3>Set your profile</h3>
-          <p>Your ingredient avoidances, ethical commitments, and skin sensitivity flags. These never change without your explicit action.</p>
-        </div>
-        <div class="card fade-in" style="border-top-color: var(--mid);">
-          <div class="card-num">02</div>
-          <h3>Constraint engine runs</h3>
-          <p>Every product in every store is checked against your profile. Anything that fails is removed — not deprioritized. Removed.</p>
-        </div>
-        <div class="card fade-in">
-          <div class="card-num">03</div>
-          <h3>Cross-store pricing</h3>
-          <p>What passes your filter is cross-compared across CVS, Walgreens, Ulta, Target — by unit price (per fl oz, per count), not package size.</p>
-        </div>
-        <div class="card fade-in" style="border-top-color: var(--light);">
-          <div class="card-num">04</div>
-          <h3>Your care list</h3>
-          <p>One list, per store, with net savings shown — loyalty discounts and shipping costs included. The number in your pocket.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing" class="alt">
-    <div class="container">
-      <p class="section-label fade-in">Pricing</p>
-      <h2 class="fade-in">Start free.<br /><em>Stay honest.</em></h2>
-      <div class="divider fade-in"></div>
-      <p class="lead fade-in">No ads. No affiliate deals. No data sales. Revenue is subscriptions only.</p>
-
-      <div class="four-col">
-        <div class="card fade-in">
-          <p class="tier-name">Price Finder</p>
-          <div class="tier-price">Free</div>
-          <p class="tier-period">always</p>
-          <p class="tier-desc">Cross-store unit-price comparison for personal care and beauty. Always free.</p>
-        </div>
-        <div class="card fade-in">
-          <p class="tier-name">Care Tracker</p>
-          <div class="tier-price">$5<span style="font-size:1rem;">/mo</span></div>
-          <p class="tier-period">per household</p>
-          <p class="tier-desc">Auto-track your regular products. Buy-off alerts when your brand goes on sale.</p>
-        </div>
-        <div class="card fade-in">
-          <p class="tier-name">Ingredient Guard</p>
-          <div class="tier-price">$12<span style="font-size:1rem;">/mo</span></div>
-          <p class="tier-period">per household</p>
-          <p class="tier-desc">Hard ingredient filter engine. Your avoidances are absolute rules — never traded for savings.</p>
-        </div>
-        <div class="card fade-in">
-          <p class="tier-name">Full Care</p>
-          <div class="tier-price">$19<span style="font-size:1rem;">/mo</span></div>
-          <p class="tier-period">per household</p>
-          <p class="tier-desc">Full product history, ingredient database search, loyalty optimizer, multi-person profiles.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SINCERE STRATEGY -->
-  <section>
-    <div class="container">
-      <div class="sincere-block fade-in">
-        <p class="section-label">The Sincere Strategy®</p>
-        <h2>No brand can pay to appear<br />in WhollyCare recommendations.<br /><em>Not one. Ever.</em></h2>
-        <p class="lead">
-          The beauty and personal care industry is funded by the brands it recommends. Sponsored content, affiliate commissions, and paid placement are the business model. WhollyCare's business model is you paying a subscription because we save you more than we cost. That's the only alignment we'll accept.
-        </p>
-        <div class="pills">
-          <span class="pill">Zero paid placements — ever</span>
-          <span class="pill">Ingredient filters are hard rules</span>
-          <span class="pill">Net savings shown — loyalty & shipping included</span>
-          <span class="pill">Your personal data is never sold or targeted</span>
-          <span class="pill">Subscription-only revenue</span>
-        </div>
-        <p style="color:rgba(255,255,255,0.35);font-size:0.8rem;margin-top:2rem;">
-          A <a href="https://sentirsolutions.github.io/sentir-solutions-site/" target="_blank" rel="noopener" style="color:var(--accent-lt);">Sentir Solutions®</a> company &nbsp;·&nbsp; wholly-care.com &nbsp;·&nbsp; Coming 2026
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- WAITLIST -->
-  <section class="alt">
-    <div class="container">
-      <div class="waitlist-block fade-in">
-        <p class="section-label">Coming Soon — 2026</p>
-        <h2>Be first to know<br /><em>when WhollyCare launches.</em></h2>
-        <p>We're building WhollyCare after the Sincere Strategy platform is proven across food, household, and pet verticals. Join the waitlist and we'll reach out first.</p>
         <a href="mailto:tim.hislop@gmail.com?subject=WhollyCare%20Waitlist" class="btn-cta">Join the Waitlist →</a>
+        <a href="#ingredients" class="btn-ghost">See How It Works</a>
+      </div>
+      <p class="hero-tagline">The personal care plan that pays you back.</p>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-card-label">Your Active Filters</div>
+      <div style="margin-bottom:1.1rem;">
+        <div class="filter-tag active">✓ Fragrance-free</div>
+        <div class="filter-tag active">✓ Cruelty-free</div>
+        <div class="filter-tag active">✓ Paraben-free</div>
+        <div class="filter-tag active">✓ Sulfate-free</div>
+        <div class="filter-tag">+ 3 more</div>
+      </div>
+      <div class="hc-divider"></div>
+      <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent-lt);margin-bottom:0.85rem;">Shampoo — this week</div>
+      <div class="product-row pass">
+        <div class="product-name">Vanicream Free &amp; Clear</div>
+        <div class="product-price">$0.89/fl oz</div>
+      </div>
+      <div class="product-row pass">
+        <div class="product-name">Free &amp; Clear Shampoo</div>
+        <div class="product-price">$0.94/fl oz</div>
+      </div>
+      <div class="product-row out">
+        <div>
+          <div class="product-name">Head &amp; Shoulders Classic</div>
+          <div class="product-reason">Contains fragrance · sulfates</div>
+        </div>
+        <div></div>
+      </div>
+      <div class="product-row out">
+        <div>
+          <div class="product-name">Pantene Pro-V</div>
+          <div class="product-reason">Contains fragrance · silicone</div>
+        </div>
+      </div>
+      <div class="hc-divider"></div>
+      <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">2 products pass your profile · 2 removed · Saves <strong style="color:var(--accent-lt);">$0.18/fl oz</strong> vs. single store</div>
+    </div>
+  </div>
+</section>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat-bar-inner">
+    <div class="stat-item"><div class="stat-num">4+</div><div class="stat-label">Stores cross-compared</div></div>
+    <div class="stat-item"><div class="stat-num">Your rules</div><div class="stat-label">Filter first, always</div></div>
+    <div class="stat-item"><div class="stat-num">Unit price</div><div class="stat-label">Per fl oz, per count — honest</div></div>
+    <div class="stat-item"><div class="stat-num">$0</div><div class="stat-label">Paid placements, ever</div></div>
+  </div>
+</div>
+
+<!-- INGREDIENT FILTERS -->
+<section id="ingredients" class="on-white">
+  <div class="container">
+    <p class="section-eyebrow fade-in">Your Ingredients. Your Rules.</p>
+    <h2 class="fade-in">What you won't use is<br /><em>a hard rule — not a suggestion.</em></h2>
+    <div class="rule fade-in"></div>
+    <p class="lead-text fade-in">WhollyCare runs your ingredient profile through a constraint engine before any price comparison starts. A product that fails your profile doesn't appear in your results — at any price. It doesn't get a "lower ranking." It's removed.</p>
+
+    <div class="filter-grid fade-in">
+      <div class="filter-card dark-top">
+        <div class="filter-big-icon">🌿</div>
+        <h3>Ingredient Avoidance</h3>
+        <p>The formulas, preservatives, and additives you don't want near your skin, hair, or body — removed from every result before savings are compared.</p>
+        <div class="filter-tags-list">
+          <span class="filter-chip">Fragrance-free</span>
+          <span class="filter-chip">Paraben-free</span>
+          <span class="filter-chip">Sulfate-free</span>
+          <span class="filter-chip">Phthalate-free</span>
+          <span class="filter-chip">Silicone-free</span>
+          <span class="filter-chip">Formaldehyde-free</span>
+          <span class="filter-chip">Alcohol-free</span>
+        </div>
+      </div>
+      <div class="filter-card mid-top">
+        <div class="filter-big-icon">✊</div>
+        <h3>Ethical Commitments</h3>
+        <p>Your values around how products are made and sourced — treated as hard constraints, not preferences that can be traded away for a 40¢ discount.</p>
+        <div class="filter-tags-list">
+          <span class="filter-chip">Cruelty-free</span>
+          <span class="filter-chip">Vegan</span>
+          <span class="filter-chip">Reef-safe</span>
+          <span class="filter-chip">Sustainably sourced</span>
+          <span class="filter-chip">Certified organic</span>
+        </div>
+      </div>
+      <div class="filter-card accent-top">
+        <div class="filter-big-icon">🩺</div>
+        <h3>Skin &amp; Sensitivity</h3>
+        <p>Clinical and dermatological requirements — for sensitive skin, eczema, rosacea, allergies, or specific medical conditions — handled as non-negotiable constraints.</p>
+        <div class="filter-tags-list">
+          <span class="filter-chip">Hypoallergenic</span>
+          <span class="filter-chip">Non-comedogenic</span>
+          <span class="filter-chip">Eczema-safe</span>
+          <span class="filter-chip">Dermatologist-tested</span>
+          <span class="filter-chip">Lanolin-free</span>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>
-        <strong style="color:#FFFFFF;">WhollyCare™</strong> &nbsp;·&nbsp;
-        A <a href="https://sentirsolutions.github.io/sentir-solutions-site/" target="_blank" rel="noopener">Sentir Solutions®</a> Company &nbsp;·&nbsp;
-        Charlottesville, Virginia
-      </p>
-      <p>
-        <a href="https://sentirsolutions.github.io/sentir-solutions-site/mission.html" target="_blank" rel="noopener">The Sincere Strategy®</a> &nbsp;·&nbsp;
-        <a href="https://whollyfare-website-whlrpy4dnreymq3gbjjkup.streamlit.app" target="_blank" rel="noopener">WhollyFare® ↗</a> &nbsp;·&nbsp;
-        <a href="mailto:tim.hislop@gmail.com">tim.hislop@gmail.com</a>
-      </p>
-      <p style="margin-top:0.5rem;opacity:0.4;">Zero paid placements &nbsp;·&nbsp; Revenue is subscriptions only</p>
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="container">
+    <p class="section-eyebrow fade-in">How It Works</p>
+    <h2 class="fade-in">Your values filter first.<br /><em>Savings follow.</em></h2>
+    <div class="rule fade-in"></div>
+
+    <div class="steps fade-in">
+      <div class="step">
+        <div class="step-num"><span>01</span></div>
+        <h4>Set your profile</h4>
+        <p>Your ingredient avoidances, ethical commitments, and skin sensitivity flags. These never change without your explicit action — they're constraints, not defaults to be overridden.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><span>02</span></div>
+        <h4>Constraint engine runs</h4>
+        <p>Every product across every store is checked against your profile. Anything that fails is removed from results — not deprioritized, not ranked lower. Removed entirely.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><span>03</span></div>
+        <h4>Cross-store pricing</h4>
+        <p>What passes your profile is cross-compared across CVS, Walgreens, Ulta, and Target — by unit price (per fl oz, per count) — not manipulated by package size.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><span>04</span></div>
+        <h4>Your care list</h4>
+        <p>One list, per store, with net savings shown — loyalty discounts and shipping costs factored in. The number in your pocket, not the number that flatters the recommendation.</p>
+      </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    const obs = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }),
-      { threshold: 0.08 }
-    );
-    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
-  </script>
+<!-- FEATURES -->
+<section class="on-soft">
+  <div class="container">
+    <p class="section-eyebrow fade-in">Platform Features</p>
+    <h2 class="fade-in">Built for how personal care<br /><em>actually works in real life.</em></h2>
+    <div class="rule fade-in"></div>
 
+    <div class="feature-grid fade-in">
+      <div class="feature-card">
+        <div class="feature-icon">👤</div>
+        <h3>Multi-person profiles</h3>
+        <p>Different household members, different skin types, different ingredient constraints. Each person has their own filter profile — and the shopping list reflects all of them.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Ingredient database search</h3>
+        <p>Search any ingredient to see which products contain it and which don't. Understand what's in your products — not just whether they cleared your filter.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏷️</div>
+        <h3>Loyalty program optimizer</h3>
+        <p>CVS ExtraCare, Walgreens Cash, and Ulta Beauty rewards — factored into the real price comparison so you're seeing the honest unit cost after loyalty benefits.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <h3>Product history tracking</h3>
+        <p>Track what you've bought, when you bought it, and what you paid. See how prices shift over time. Know when to stock up and when to wait.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Sale alerts for your products</h3>
+        <p>WhollyCare alerts you when something in your regular care routine goes on sale — at a price that clears your ingredient profile. Not just any sale. The right one.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👁️</div>
+        <h3>Rejection transparency</h3>
+        <p>Every product removed by the constraint engine is logged with the exact reason. Radical transparency from the Sincere Strategy®. No black boxes, ever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="on-white">
+  <div class="container">
+    <p class="section-eyebrow fade-in">Pricing</p>
+    <h2 class="fade-in">Start free. Stay<br /><em>honest.</em></h2>
+    <div class="rule fade-in"></div>
+    <p class="lead-text fade-in">No ads. No affiliate deals. No brand can pay for placement in WhollyCare. Revenue is subscriptions only — the Sincere Strategy® in practice.</p>
+
+    <div class="pricing-grid fade-in">
+      <div class="price-card">
+        <div class="price-tier">Price Finder</div>
+        <div class="price-amount">Free</div>
+        <div class="price-period">always, no card needed</div>
+        <div class="price-desc">Cross-store unit-price comparison for personal care and beauty. Weekly sale alerts. No time limit.</div>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Care Tracker</div>
+        <div class="price-amount">$5<span style="font-size:1.1rem;font-family:'Inter',sans-serif;">/mo</span></div>
+        <div class="price-period">per household</div>
+        <div class="price-desc">Auto-track your regular products. Buy-off alerts when your brand goes on sale at your preferred stores.</div>
+      </div>
+      <div class="price-card featured">
+        <div class="price-tier">Ingredient Guard <span class="price-badge">Popular</span></div>
+        <div class="price-amount">$12<span style="font-size:1.1rem;font-family:'Inter',sans-serif;">/mo</span></div>
+        <div class="price-period">per household</div>
+        <div class="price-desc">Full constraint engine — ingredient avoidance, ethical flags, and skin sensitivity rules. Your profile runs before any price comparison.</div>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Full Care</div>
+        <div class="price-amount">$19<span style="font-size:1.1rem;font-family:'Inter',sans-serif;">/mo</span></div>
+        <div class="price-period">per household</div>
+        <div class="price-desc">Full product history, ingredient database, loyalty program optimizer, multi-person profiles, and Found Money ledger.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SINCERE STRATEGY -->
+<section class="on-dark">
+  <div class="container">
+    <p class="section-eyebrow light fade-in">The Sincere Strategy®</p>
+    <h2 class="light fade-in">No brand can pay to appear<br />in a WhollyCare recommendation.<br /><em>Not one. Ever.</em></h2>
+    <div class="rule light fade-in"></div>
+    <p class="lead-text light fade-in">The personal care and beauty industry runs on sponsored recommendations, paid influencer content, and affiliate commissions. Every "best shampoo for sensitive skin" article is monetized by the brands it recommends. WhollyCare isn't. We're funded by the households we serve — period.</p>
+
+    <div class="sincere-grid fade-in">
+      <div class="sincere-item">
+        <div class="sincere-icon">🚫</div>
+        <h4>Zero paid placements. Ever.</h4>
+        <p>No brand can pay to appear in a WhollyCare result, recommendation, or alert. This is a founding operating constraint — not a policy we revisit when the revenue looks good.</p>
+      </div>
+      <div class="sincere-item">
+        <div class="sincere-icon">🛡️</div>
+        <h4>Your ingredient rules are absolute.</h4>
+        <p>Ingredient filters, ethical commitments, and skin sensitivities are hard constraints — they run first. A product that fails your profile is never shown at any price.</p>
+      </div>
+      <div class="sincere-item">
+        <div class="sincere-icon">👁️</div>
+        <h4>Radical transparency.</h4>
+        <p>Every product removed from your results is logged with the exact reason. You see what was filtered and why. No recommendation engine you can't see inside of.</p>
+      </div>
+      <div class="sincere-item">
+        <div class="sincere-icon">🔒</div>
+        <h4>Your data is yours.</h4>
+        <p>We know your skin sensitivities, ingredient avoidances, and personal care routine. That data is never sold, shared, or used for targeting. It belongs to you.</p>
+      </div>
+    </div>
+
+    <p style="color:rgba(255,255,255,0.2);font-size:0.8rem;margin-top:2.5rem;text-align:center;">
+      A <a href="https://sentirsolutions.github.io/sentir-solutions-site/" target="_blank" rel="noopener" style="color:var(--accent-lt);text-decoration:none;">Sentir Solutions®</a> company &nbsp;·&nbsp; wholly-care.com &nbsp;·&nbsp; Charlottesville, Virginia
+    </p>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="on-white">
+  <div class="container">
+    <div class="waitlist-box fade-in">
+      <p class="section-eyebrow" style="text-align:center;">Coming 2026</p>
+      <h2>Be first when<br /><em>WhollyCare goes live.</em></h2>
+      <div class="rule" style="margin:1rem auto 1.75rem;"></div>
+      <p>We're building WhollyCare after the Sincere Strategy platform is proven across food and household verticals. Join the waitlist and we'll reach out when your area is live — one email, no spam.</p>
+      <a href="mailto:tim.hislop@gmail.com?subject=WhollyCare%20Waitlist" class="btn-cta" style="font-size:0.95rem;padding:14px 36px;">Join the Waitlist →</a>
+      <p style="margin-top:1.25rem;font-size:0.8rem;color:var(--muted-lt);">While you wait — <a href="https://whollyfare-website-whlrpy4dnreymq3gbjjkup.streamlit.app" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">try WhollyFare®</a>, the live Sincere Strategy product for grocery savings.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-wordmark">WhollyCare™</div>
+        <p>Ingredient-first personal care price intelligence. Your values, never traded. A Sentir Solutions® company.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Product</h5>
+        <a href="#ingredients">Ingredient Filters</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h5>Wholly Platform</h5>
+        <a href="https://whollyfare-website-whlrpy4dnreymq3gbjjkup.streamlit.app" target="_blank" rel="noopener">WhollyFare® — Live ↗</a>
+        <a href="https://timhislop-design.github.io/whollyware-app/" target="_blank" rel="noopener">WhollyWare™</a>
+        <a href="https://timhislop-design.github.io/whollypaws-app/" target="_blank" rel="noopener">WhollyPaws™</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="https://sentirsolutions.github.io/sentir-solutions-site/" target="_blank" rel="noopener">Sentir Solutions®</a>
+        <a href="https://sentirsolutions.github.io/sentir-solutions-site/mission.html" target="_blank" rel="noopener">The Sincere Strategy®</a>
+        <a href="https://sentir-consulting.com" target="_blank" rel="noopener">Sentir Consulting ↗</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 WhollyCare™ · Sentir Solutions® LLC · Charlottesville, Virginia · <a href="mailto:tim.hislop@gmail.com" style="color:rgba(255,255,255,0.25);text-decoration:none;">tim.hislop@gmail.com</a></span>
+      <span class="footer-sincere">The Sincere Strategy® · Zero paid placements · Revenue is subscriptions only</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }),
+    { threshold: 0.07 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
